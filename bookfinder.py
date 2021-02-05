@@ -78,6 +78,7 @@ def reading_notes_generator(isbn, item):
 	file.write("- \"<a href='https://www.decitre.fr/livres/" + book_isbn + ".html'>Decitre</a>\"\n")
 	file.write("- \"<a href='https://www.leslibraires.fr/livre/" + book_isbn + "'>Les libraires</a>\"\n")
 	file.write("- \"<a href='https://www.placedeslibraires.fr/livre/" + book_isbn + "'>Place des libraires</a>\"\n")
+	file.write("layout: single-biblio\n")
 	file.write("slug: " + book_slug + "\n")
 	file.write("biblio_tags: " + "\n")
 	file.write("---\n\n")
