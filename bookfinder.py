@@ -68,7 +68,7 @@ def reading_notes_generator(isbn, item):
 	if book_pages:
 		file.write("pages: " + book_pages + "\n")
 	file.write("isbn: " + isbn + "\n")
-	file.write("biblio_localisations: \n")
+	file.write("biblio_localisations: \n- \"\"\n")
 	file.write("achatDate: \n")
 	file.write("achatLieu: \n")
 	file.write("achatPrix: \n")
