@@ -4,9 +4,14 @@ BookFinder is a set of Python scripts that help maintain [my personal reading lo
 
 ## Usage
 
-	python3 bookfinder.py
+	python3 bookfinder.py [-h] --isbn ISBN --access ACCESS --secret SECRET [--host HOST] [--region REGION] [--tag TAG]
 	
-BookFinder will ask you to input an ISBN-10 or ISBN-13. If you supply a valid ISBN, BookFinder will proceed.
+- `ISBN`: a valid ISBN-10 or ISBN-13
+- `ACCESS`: your Amazon PA-API access key
+- `SECRET`: your Amazon PA-API secret key
+- `HOST`: your Amazon host (default: `webservices.amazon.fr`)
+- `REGION`: your Amazon region (default: `eu-west-1`)
+- `TAG`: your Amazon associate tag (default: `mzd-21`)
 
 ## Requirements
 

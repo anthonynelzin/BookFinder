@@ -1,16 +1,28 @@
-# Example ISBN-10 (Walter Isaacson's Steve Jobs)
-# 1408703748
+#!/usr/bin/env python3
+
+"""
+	Anthony Nelzin-Santos
+	anthony@nelzin.fr
+	https://anthony.nelzin.fr
+
+	European Union Public License 1.2
+"""
+
+# Example ISBN from Walter Isaacson's Steve Jobs
+# 1451648537
+# 978-1451648539
 # https://webservices.amazon.fr/paapi5/scratchpad/index.html
 
 from bookfinder_isbn_check import *
 from bookfinder_amazon_api import *
 from datetime import datetime
+import argparse
 import string
 import unicodedata
 import urllib.request
 
 def reading_notes_generator(isbn, item):
-	print("Creating reading notes…")
+	print("Creating reading log…")
 
 	book_title = item.item_info.title.display_value
 	print("Title: " + book_title)
@@ -89,12 +101,28 @@ def reading_notes_generator(isbn, item):
 	if book_image:
 		urllib.request.urlretrieve("" + book_image, "hero.jpg")
 
-	print("The reading notes are ready in the " + book_slug + " folder.")
+	print("Your reading log is ready.")
 		
 def main():
-	isbn = input("Please enter an ISBN: ")
+	parser = argparse.ArgumentParser(description="A needlessly complicated way to maintain my reading log.")
+	parser.add_argument("-i", "--isbn", help="An ISBN-10 or ISBN-13.")
+	parser.add_argument("-a", "--access", help="Your Amazon PA-API access key.")
+	parser.add_argument("-s", "--secret", help="Your Amazon PA-API secret key.")
+	parser.add_argument("-x", "--host", default="webservices.amazon.fr", help="Your Amazon host.")
+	parser.add_argument("-r", "--region", default="eu-west-1", help="Your Amazon region.")
+	parser.add_argument("-t", "--tag", default="mzd-21", help="Your Amazon associate tag.")
+	
+	args = parser.parse_args()
+	
+	isbn = args.isbn
+	access = args.access
+	secret = args.secret
+	host = args.host
+	region = args.region
+	tag = args.tag
+
 	isbn_check(isbn)
-	item = search_items(isbn)
+	item = search_items(isbn, access, secret, host, region, tag)
 	reading_notes_generator(isbn, item)
 	
 if __name__ == '__main__':

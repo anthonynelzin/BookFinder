@@ -1,4 +1,12 @@
-from bookfinder_variables import *
+#!/usr/bin/env python3
+
+"""
+	Anthony Nelzin-Santos
+	anthony@nelzin.fr
+	https://anthony.nelzin.fr
+
+	European Union Public License 1.2
+"""
 
 from paapi5_python_sdk.api.default_api import DefaultApi
 from paapi5_python_sdk.search_items_request import SearchItemsRequest
@@ -6,17 +14,17 @@ from paapi5_python_sdk.search_items_resource import SearchItemsResource
 from paapi5_python_sdk.partner_type import PartnerType
 from paapi5_python_sdk.rest import ApiException
 
-def search_items(isbn):
+def search_items(isbn, access, secret, host, region, tag):
 	# Setup API
 	default_api = DefaultApi(
-		access_key = bookfinder_access_key,
-		secret_key = bookfinder_secret_key,
-		host = bookfinder_host,
-		region = bookfinder_region
+		access_key = access,
+		secret_key = secret,
+		host = host,
+		region = region
 	)
 
 	# Setup search
-	partner_tag = bookfinder_partner_tag
+	partner_tag = tag
 	item_count = 1
 	keywords = isbn
 
@@ -73,7 +81,7 @@ def search_items(isbn):
 		print("Exception :", exception)
 		
 def main():
-	search_items(isbn)
+	search_items(isbn, access, secret, host, region, tag)
 	
 if __name__ == '__main__':
 	main()

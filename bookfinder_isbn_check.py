@@ -1,3 +1,13 @@
+#!/usr/bin/env python3
+
+"""
+	Anthony Nelzin-Santos
+	anthony@nelzin.fr
+	https://anthony.nelzin.fr
+
+	European Union Public License 1.2
+"""
+
 import re
 
 def isbn_clean(isbn):

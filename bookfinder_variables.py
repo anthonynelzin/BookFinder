@@ -1,5 +1,0 @@
-bookfinder_access_key = ""
-bookfinder_secret_key = ""
-bookfinder_host = "webservices.amazon.fr"
-bookfinder_region = "eu-west-1"
-bookfinder_partner_tag = "mzd-21"
