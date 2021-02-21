@@ -44,16 +44,20 @@ def isbn_10_check(isbn):
 	check = 11 - (sum%11)
 	
 	if check == 10:
-		return "X"
+		check = "X"
 	
 	if check == 11:
-		return "0"
+		check = 0
+		
+	print(numbers)
+	print(numbers[-1])	
+	print(check)
 	
-	if numbers[-1] == check:
-		print("The ISBN " + isbn + "is a valid ISBN-10.")
+	if numbers[-1] == str(check):
+		print("The ISBN " + isbn + " is a valid ISBN-10.")
 		return isbn
 	else:
-		raise ValueError("The ISBN " + isbn + "is not a valid ISBN-10.")
+		raise ValueError("The ISBN " + isbn + " is not a valid ISBN-10.")
 	
 def isbn_13_check(isbn):
 	# Check the validity of the provided ISBN-13
@@ -76,13 +80,17 @@ def isbn_13_check(isbn):
 	check = 10 - (sum%10)
 	
 	if check == 10:
-		return "0"
+		check = 0
+	
+	print(numbers)
+	print(numbers[-1])	
+	print(check)
 		
-	if numbers[-1] == check:
-		print("The ISBN " + isbn + "is a valid ISBN-13.")
+	if numbers[-1] == str(check):
+		print("The ISBN " + isbn + " is a valid ISBN-13.")
 		return isbn
 	else:
-		raise ValueError("The ISBN " + isbn + "is not a valid ISBN-13.")
+		raise ValueError("The ISBN " + isbn + " is not a valid ISBN-13.")
 	
 def main():
 	isbn_check(isbn)
