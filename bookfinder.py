@@ -56,6 +56,7 @@ def reading_notes_generator(isbn, slug, book):
 		os.mkdir(slug)
 	file = open(slug + "/index.md", "w")
 	file.write("---\n")
+	file.write("draft: true\n")
 	file.write("title: \"" + book_title + "\"\n")
 	file.write(
 		"publishDate: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
