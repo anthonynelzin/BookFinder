@@ -48,8 +48,9 @@ def reading_notes_generator(isbn, slug, book):
 	book_pages = str(book.get('number_of_pages', None))
 	print("# of pages: " + book_pages)
 	
-	book_image = str(book['cover'].get('large', None))
-	print("Cover: " + book_image)
+	if book['cover']:
+		book_image = str(book['cover'].get('large', None))
+		print("Cover: " + book_image)
 
 	# Let's do this
 	if not os.path.exists(slug):
