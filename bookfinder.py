@@ -48,7 +48,7 @@ def reading_notes_generator(isbn, slug, book):
 	book_pages = str(book.get('number_of_pages', None))
 	print("# of pages: " + book_pages)
 	
-	if book['cover']:
+	if "cover" in book:
 		book_image = str(book['cover'].get('large', None))
 		print("Cover: " + book_image)
 
@@ -90,7 +90,7 @@ def reading_notes_generator(isbn, slug, book):
 	
 	file.close()
 
-	if book_image:
+	if "cover" in book:
 		urllib.request.urlretrieve("" + book_image, slug + "/hero.jpg")
 
 	print("Your reading log is ready.")
