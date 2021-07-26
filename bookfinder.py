@@ -63,6 +63,7 @@ def reading_notes_generator(isbn, slug, book):
 		"publishDate: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
 	file.write(
 		"date: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
+	file.write("customColor: \"\"\n")
 	file.write("biblio_auteurs: \n")
 	authors = book_authors.split('#')
 	for author in authors:
