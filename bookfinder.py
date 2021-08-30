@@ -63,7 +63,7 @@ def reading_notes_generator(isbn, slug, book):
 		"publishDate: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
 	file.write(
 		"date: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
-	file.write("customColor: \"\"\n")
+	file.write("theme: \"\"\n")
 	file.write("biblio_auteurs: \n")
 	authors = book_authors.split('#')
 	for author in authors:
@@ -80,9 +80,6 @@ def reading_notes_generator(isbn, slug, book):
 	file.write("achatLieu: \"\"\n")
 	file.write("achatPrix: \"\"\n")
 	file.write("lecture: \n- \"\"\n")
-	file.write("link: \n")
-	file.write("- \"<a href='https://www.leslibraires.fr/livre/" + isbn + "'>Les libraires</a>\"\n")
-	file.write("- \"<a href='https://www.placedeslibraires.fr/livre/" + isbn + "'>Place des libraires</a>\"\n")
 	file.write("layout: single-biblio\n")
 	file.write("slug: " + slug + "\n")
 	file.write("biblio_tags: \n- \"\"\n")
