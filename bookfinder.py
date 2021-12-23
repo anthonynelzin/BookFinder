@@ -89,7 +89,7 @@ def reading_notes_generator(isbn, slug, book):
 	file.close()
 
 	if "cover" in book:
-		urllib.request.urlretrieve("" + book_image, slug + "/hero.jpg")
+		urllib.request.urlretrieve("" + book_image, slug + "/cover.jpg")
 
 	print("Your reading log is ready.")
 		
