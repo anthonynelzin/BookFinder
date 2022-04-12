@@ -80,7 +80,7 @@ def reading_notes_generator(isbn, slug, book):
 	file.write("achatDate: \"\"\n")
 	file.write("achatLieu: \"\"\n")
 	file.write("achatPrix: \"\"\n")
-	file.write("lecture: \n- \"\"\n")
+	file.write("lectures: \n- \"\"\n")
 	file.write("layout: single-biblio\n")
 	file.write("slug: " + slug + "\n")
 	file.write("themes: \n- \"\"\n")
