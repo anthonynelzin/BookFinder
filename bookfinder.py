@@ -64,6 +64,7 @@ def reading_notes_generator(isbn, slug, book):
 	file.write(
 		"date: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
 	file.write("theme: \"\"\n")
+	file.write("slug: " + slug + "\n")
 	file.write("auteurs: \n")
 	authors = book_authors.split('#')
 	for author in authors:
@@ -72,17 +73,16 @@ def reading_notes_generator(isbn, slug, book):
 	publishers = book_publishers.split('#')
 	for publisher in publishers:
 		file.write("- \"" + publisher + "\"\n")
-	file.write("pays: \n")
 	file.write("annee: " + book_date + "\n")
 	file.write("pages: " + book_pages + "\n")
 	file.write("isbn: " + isbn + "\n")
-	file.write("cotes: \n- \"\"\n")
+	file.write("pays: \n")
 	file.write("achatDate: \"\"\n")
 	file.write("achatLieu: \"\"\n")
 	file.write("achatPrix: \"\"\n")
 	file.write("lectures: \n- \"\"\n")
-	file.write("layout: single-biblio\n")
-	file.write("slug: " + slug + "\n")
+	file.write("cotes: \n- \"\"\n")
+	file.write("genres: \n- \"\"\n")
 	file.write("themes: \n- \"\"\n")
 	file.write("---\n\n")
 	file.write("## Notes\n\n## Notes archivistiques\n\n")
