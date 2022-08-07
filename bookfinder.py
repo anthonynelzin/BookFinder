@@ -17,13 +17,16 @@ from datetime import datetime
 import argparse
 import json
 import os
+import re
 import string
 import unicodedata
 import urllib.request
 
 # Clean the provided ISBN
-def isbn_clean(isbn):
-	return isbn_cleaned = re.sub("\W", "", isbn)
+def clean_isbn(isbn):
+	isbn = re.sub("\W", "", isbn)
+	
+	return isbn
 
 # Retrieved metadata from the OpenLibrary API
 def get_book(isbn):
@@ -106,7 +109,7 @@ def main():
 	
 	args = parser.parse_args()
 	
-	isbn = isbn_clean(args.isbn)
+	isbn = clean_isbn(args.isbn)
 	slug = args.slug
 	book = get_book(isbn)
 	reading_notes_generator(isbn, slug, book)
