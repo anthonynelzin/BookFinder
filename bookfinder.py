@@ -13,7 +13,6 @@
 # 978-1451648539
 # https://openlibrary.org/dev/docs/api/books
 
-from bookfinder_isbn_check import *
 from datetime import datetime
 import argparse
 import json
@@ -22,6 +21,11 @@ import string
 import unicodedata
 import urllib.request
 
+# Clean the provided ISBN
+def isbn_clean(isbn):
+	return isbn_cleaned = re.sub("\W", "", isbn)
+
+# Retrieved metadata from the OpenLibrary API
 def get_book(isbn):
 	url = "https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json"
 	#print(url)
@@ -30,6 +34,7 @@ def get_book(isbn):
 	#print(book)
 	return book
 
+# Create the reading log
 def reading_notes_generator(isbn, slug, book):
 	print("Creating reading log…")
 
@@ -101,7 +106,6 @@ def main():
 	
 	args = parser.parse_args()
 	
-	# isbn = isbn_check(args.isbn)
 	isbn = isbn_clean(args.isbn)
 	slug = args.slug
 	book = get_book(isbn)

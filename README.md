@@ -4,7 +4,7 @@ BookFinder is a set of Python scripts that help maintain [my personal reading lo
 
 ## Usage
 
-	python3 bookfinder.py [-h] --isbn ISBN --slug SLUG
+	bookFinder.py [-h] [-i ISBN] [-s SLUG]
 	
 - `ISBN`: a valid ISBN-10 or ISBN-13
 - `SLUG`: the reading log slug
@@ -15,4 +15,4 @@ None.
 
 ## Licence
 
-EUPL 1.2.
+EUPL 1.2
