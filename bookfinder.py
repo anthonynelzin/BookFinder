@@ -13,6 +13,7 @@
 # 978-1451648539
 # https://openlibrary.org/dev/docs/api/books
 
+from ColourMatcher.colourMatcher import colourMatcher
 from datetime import datetime
 import argparse
 import json
@@ -58,6 +59,7 @@ def reading_notes_generator(isbn, slug, book):
 	
 	if "cover" in book:
 		book_image = str(book['cover'].get('large', None))
+		urllib.request.urlretrieve("" + book_image, slug + "/cover.jpg")
 		print("Cover: " + book_image)
 
 	# Let's do this
@@ -71,7 +73,11 @@ def reading_notes_generator(isbn, slug, book):
 		"publishDate: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
 	file.write(
 		"date: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
-	file.write("theme: \"\"\n")
+	if "cover" in book:
+		book_colour = colourMatcher(slug + "/cover.jpg")
+		file.write("theme: \"" + book_colour + "\"\n")
+	else:
+		file.write("theme: \"\"\n")
 	file.write("slug: " + slug + "\n")
 	file.write("auteurs: \n")
 	authors = book_authors.split('#')
@@ -84,7 +90,7 @@ def reading_notes_generator(isbn, slug, book):
 	file.write("annee: " + book_date + "\n")
 	file.write("pages: " + book_pages + "\n")
 	file.write("isbn: " + isbn + "\n")
-	file.write("pays: \n")
+	file.write("pays: \n- \"\"\n")
 	file.write("achatDate: \"\"\n")
 	file.write("achatLieu: \"\"\n")
 	file.write("achatPrix: \"\"\n")
@@ -96,9 +102,6 @@ def reading_notes_generator(isbn, slug, book):
 	file.write("## Notes\n\n## Notes archivistiques\n\n")
 	
 	file.close()
-
-	if "cover" in book:
-		urllib.request.urlretrieve("" + book_image, slug + "/cover.jpg")
 
 	print("Your reading log is ready.")
 		
