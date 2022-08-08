@@ -15,6 +15,7 @@
 
 from ColourMatcher.colourMatcher import colourMatcher
 from datetime import datetime
+from ISBNChecker.ISBNChecker import ISBNChecker
 import argparse
 import json
 import os
@@ -23,25 +24,16 @@ import string
 import unicodedata
 import urllib.request
 
-# Clean the provided ISBN
-def clean_isbn(isbn):
-	isbn = re.sub("\W", "", isbn)
-	
-	return isbn
-
-# Retrieved metadata from the OpenLibrary API
+# Retrieve metadata from the OpenLibrary API
 def get_book(isbn):
+	print("Retrieving metadata…")
 	url = "https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json"
-	#print(url)
 	oldata = urllib.request.urlopen(url)
 	book = json.load(oldata)['%s:%s' % ("ISBN", isbn)]
-	#print(book)
 	return book
 
 # Create the reading log
-def reading_notes_generator(isbn, slug, book):
-	print("Creating reading log…")
-
+def write_log(isbn, slug, book):
 	book_title = book.get('title', None)
 	print("Title: " + book_title)
 	
@@ -60,12 +52,16 @@ def reading_notes_generator(isbn, slug, book):
 	if "cover" in book:
 		book_image = str(book['cover'].get('large', None))
 		urllib.request.urlretrieve("" + book_image, slug + "/cover.jpg")
-		print("Cover: " + book_image)
+	else:
+		book_image = "None"
+	print("Cover: " + book_image)
 
 	# Let's do this
+	print("Creating reading log…")
 	if not os.path.exists(slug):
 		os.mkdir(slug)
 	file = open(slug + "/index.md", "w")
+	
 	file.write("---\n")
 	file.write("draft: true\n")
 	file.write("title: \"" + book_title + "\"\n")
@@ -102,7 +98,6 @@ def reading_notes_generator(isbn, slug, book):
 	file.write("## Notes\n\n## Notes archivistiques\n\n")
 	
 	file.close()
-
 	print("Your reading log is ready.")
 		
 def main():
@@ -112,10 +107,10 @@ def main():
 	
 	args = parser.parse_args()
 	
-	isbn = clean_isbn(args.isbn)
+	isbn = ISBNChecker(args.isbn)
 	slug = args.slug
 	book = get_book(isbn)
-	reading_notes_generator(isbn, slug, book)
+	write_log(isbn, slug, book)
 	
 if __name__ == '__main__':
 	main()
