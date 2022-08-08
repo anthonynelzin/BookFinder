@@ -21,6 +21,7 @@ import json
 import os
 import re
 import string
+import time
 import unicodedata
 import urllib.request
 
@@ -71,9 +72,9 @@ def write_log(isbn, slug, book):
 	file.write("draft: true\n")
 	file.write("title: \"" + book_title + "\"\n")
 	file.write(
-		"publishDate: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
+		"publishDate: " + datetime.now().astimezone().strftime("%Y-%m-%dT%H:%M:00%z") + "\n")
 	file.write(
-		"date: " + datetime.now().strftime("%Y-%m-%dT%H:%M:%S" + "+01:00") + "\n")
+		"date: " + datetime.now().astimezone().strftime("%Y-%m-%dT%H:%M:00+01%z") + "\n")
 	if "cover" in book:
 		book_colour = colourMatcher(slug + "/cover.jpg")
 		file.write("theme: \"" + book_colour + "\"\n")
