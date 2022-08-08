@@ -1,3 +1,6 @@
 [submodule "ColourMatcher"]
 	path = ColourMatcher
 	url = https://anthonynelzin@github.com/anthonynelzin/ColourMatcher
+[submodule "ISBNChecker"]
+	path = ISBNChecker
+	url = https://anthonynelzin@github.com/anthonynelzin/ISBNChecker
