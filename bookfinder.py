@@ -27,13 +27,18 @@ import urllib.request
 # Retrieve metadata from the OpenLibrary API
 def get_book(isbn):
 	print("Retrieving metadata…")
-	url = "https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json"
-	oldata = urllib.request.urlopen(url)
-	book = json.load(oldata)['%s:%s' % ("ISBN", isbn)]
+	try:
+		url = "https://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json"
+		data = urllib.request.urlopen(url)
+	except urllib.error.URLError:
+		raise Exception("Unable to retrieve data from the Open Library. Please check your connection.")
+	
+	book = json.load(data)['%s:%s' % ("ISBN", isbn)]
 	return book
 
 # Create the reading log
 def write_log(isbn, slug, book):
+	# I like verbose commands
 	book_title = book.get('title', None)
 	print("Title: " + book_title)
 	
