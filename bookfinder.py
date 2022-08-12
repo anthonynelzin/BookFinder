@@ -39,6 +39,10 @@ def get_book(isbn):
 
 # Create the reading log
 def write_log(isbn, slug, book):
+	# Create the log’s folder
+	if not os.path.exists(slug):
+		os.mkdir(slug)
+	
 	# I like verbose commands
 	book_title = book.get('title', None)
 	print("Title: " + book_title)
@@ -55,19 +59,18 @@ def write_log(isbn, slug, book):
 	book_pages = str(book.get('number_of_pages', None))
 	print("# of pages: " + book_pages)
 	
+	# Retrieve the cover… or not
 	if "cover" in book:
 		book_image = str(book['cover'].get('large', None))
-		urllib.request.urlretrieve("" + book_image, slug + "/cover.jpg")
+		urllib.request.urlretrieve(book_image, slug + "/cover.jpg")
 	else:
 		book_image = "None"
 	print("Cover: " + book_image)
 
 	# Let's do this
 	print("Creating reading log…")
-	if not os.path.exists(slug):
-		os.mkdir(slug)
 	file = open(slug + "/index.md", "w")
-	
+
 	file.write("---\n")
 	file.write("draft: true\n")
 	file.write("title: \"" + book_title + "\"\n")
