@@ -80,9 +80,9 @@ def write_log(isbn, slug, book):
 		"date: " + datetime.now().astimezone().strftime("%Y-%m-%dT%H:%M:00+01%z") + "\n")
 	if "cover" in book:
 		book_colour = colourMatcher(slug + "/cover.jpg")
-		file.write("theme: \"" + book_colour + "\"\n")
+		file.write("colour: \"" + book_colour + "\"\n")
 	else:
-		file.write("theme: \"\"\n")
+		file.write("colour: \"\"\n")
 	file.write("slug: " + slug + "\n")
 	file.write("achatDate: \"\"\n")
 	file.write("achatLieu: \"\"\n")
